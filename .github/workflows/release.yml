@@ -19,6 +19,6 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter savestate build
-      - run: pnpm publish --filter savestate --access public
+      - run: pnpm publish --filter savestate --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

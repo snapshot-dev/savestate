@@ -7,8 +7,8 @@ import {
   SaveIndicator,
   SaveProgress,
   SaveStatus,
-} from 'savestate';
-import type { SaveStateStatus as Status } from 'savestate';
+} from '@checkpoint-dev/savestate';
+import type { SaveStateStatus as Status } from '@checkpoint-dev/savestate';
 
 const states: Status[] = ['idle', 'dirty', 'saving', 'saved', 'error', 'offline', 'syncing', 'conflict'];
 const stateLabels: Record<Status, string> = {

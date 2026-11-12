@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import 'savestate/styles.css';
+import '@checkpoint-dev/savestate/styles.css';
 import { Theme } from '@radix-ui/themes';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import StaticSearchDialog from '@/components/StaticSearchDialog';

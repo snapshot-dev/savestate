@@ -8,9 +8,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "pnpm --filter savestate build && pnpm --filter docs build",
-    "test": "pnpm --filter savestate test",
-    "lint": "pnpm --filter savestate lint"
+    "build": "pnpm --filter @checkpoint-dev/savestate build && pnpm --filter docs build",
+    "test": "pnpm --filter @checkpoint-dev/savestate test",
+    "lint": "pnpm --filter @checkpoint-dev/savestate lint"
   },
   "devDependencies": {
     "@types/node": "^20.17.10",

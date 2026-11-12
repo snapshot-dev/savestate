@@ -10,7 +10,7 @@ import {
   SaveStatus,
   type SaveStateStatus,
   type SaveStatusLabels,
-} from 'savestate';
+} from '@checkpoint-dev/savestate';
 
 const states: SaveStateStatus[] = [
   'idle',

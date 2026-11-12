@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button, Card, Flex, Heading, Text } from '@radix-ui/themes';
-import { SaveButton, SaveIndicator, SaveStatus, useSaveState } from 'savestate';
+import { SaveButton, SaveIndicator, SaveStatus, useSaveState } from '@checkpoint-dev/savestate';
 
 export function SavePlayground() {
   const [previewError, setPreviewError] = useState<Error | null>(null);

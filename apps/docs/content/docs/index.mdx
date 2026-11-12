@@ -8,13 +8,13 @@ Save State gives people clear feedback while their work is being saved. You prov
 ## Install
 
 ```bash
-pnpm add savestate
+pnpm add @checkpoint-dev/savestate
 ```
 
 Save State supports React 18 and 19. Import the stylesheet once near your application root:
 
 ```tsx
-import 'savestate/styles.css';
+import '@checkpoint-dev/savestate/styles.css';
 ```
 
 The stylesheet is optional. Every component accepts `className` and `style`, and you can override its CSS variables or provide a completely headless presentation.
@@ -22,8 +22,8 @@ The stylesheet is optional. Every component accepts `className` and `style`, and
 ## Your first autosaving editor
 
 ```tsx
-import { SaveIndicator, useSaveState } from 'savestate';
-import 'savestate/styles.css';
+import { SaveIndicator, useSaveState } from '@checkpoint-dev/savestate';
+import '@checkpoint-dev/savestate/styles.css';
 
 function Editor({ initialContent }: { initialContent: string }) {
   const save = useSaveState({

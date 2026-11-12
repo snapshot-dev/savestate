@@ -25,8 +25,8 @@ import {
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { SavePlayground } from "@/components/SavePlayground";
 
-const example = `import { SaveIndicator, useSaveState } from 'savestate';
-import 'savestate/styles.css';
+const example = `import { SaveIndicator, useSaveState } from '@checkpoint-dev/savestate';
+import '@checkpoint-dev/savestate/styles.css';
 
 function Editor() {
   const save = useSaveState({
@@ -147,7 +147,7 @@ export default function HomePage() {
               viewportProps={{ className: "home-install__viewport" }}
             >
               <Pre>
-                <code>npm install savestate</code>
+                <code>npm install @checkpoint-dev/savestate</code>
               </Pre>
             </CodeBlock>
           </Box>

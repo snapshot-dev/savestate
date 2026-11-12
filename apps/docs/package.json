@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "predev": "pnpm --filter savestate build",
+    "predev": "pnpm --filter @checkpoint-dev/savestate build",
     "dev": "next dev",
-    "prebuild": "pnpm --filter savestate build",
+    "prebuild": "pnpm --filter @checkpoint-dev/savestate build",
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit"
@@ -18,7 +18,7 @@
     "next": "16.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "savestate": "workspace:*"
+    "@checkpoint-dev/savestate": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4",

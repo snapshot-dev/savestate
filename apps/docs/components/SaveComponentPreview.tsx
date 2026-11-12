@@ -6,7 +6,7 @@ import {
   SaveIndicator,
   SaveProgress,
   SaveStatus,
-} from 'savestate';
+} from '@checkpoint-dev/savestate';
 
 export type SaveComponentPreviewName = 'indicator' | 'badge' | 'button' | 'progress' | 'status';
 

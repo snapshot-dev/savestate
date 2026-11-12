@@ -7,14 +7,14 @@ The UI focuses on save feedback only; it is not a general-purpose toast or notif
 ## Install
 
 ```bash
-pnpm add savestate
+pnpm add @checkpoint-dev/savestate
 ```
 
 ## Usage
 
 ```tsx
-import { SaveIndicator, useSaveState } from 'savestate';
-import 'savestate/styles.css';
+import { SaveIndicator, useSaveState } from '@checkpoint-dev/savestate';
+import '@checkpoint-dev/savestate/styles.css';
 
 const save = useSaveState({
   initialValue: 'Hello world',

@@ -12,8 +12,8 @@ Save State is a React and TypeScript component kit for showing the lifecycle of 
 ## Quick start
 
 ```tsx
-import { SaveIndicator, useSaveState } from 'savestate';
-import 'savestate/styles.css';
+import { SaveIndicator, useSaveState } from '@checkpoint-dev/savestate';
+import '@checkpoint-dev/savestate/styles.css';
 
 function Editor() {
   const save = useSaveState({

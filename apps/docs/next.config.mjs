@@ -14,7 +14,7 @@ const nextConfig = {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
   reactStrictMode: true,
-  transpilePackages: ['savestate'],
+  transpilePackages: ['@checkpoint-dev/savestate'],
 };
 
 export default createMDX()(nextConfig);

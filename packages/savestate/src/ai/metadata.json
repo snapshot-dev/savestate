@@ -1,5 +1,5 @@
 {
-  "name": "savestate",
+  "name": "@checkpoint-dev/savestate",
   "description": "Premium save lifecycle manager for React applications.",
   "statusValues": [
     "idle",

@@ -8,17 +8,24 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    
+    # 1. Grant OIDC permissions required for trusted publishing / provenance
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
+      
       - uses: pnpm/action-setup@v4
         with:
           version: 9.15.0
+          
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm install --frozen-lockfile        
       - run: pnpm --filter savestate build
-      - run: pnpm publish --filter savestate --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: pnpm --filter savestate publish --access public --no-git-checks --provenance

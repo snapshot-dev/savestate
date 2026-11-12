@@ -1,0 +1,100 @@
+---
+title: Component library
+description: Save State components, with a centered preview and usage code for each one.
+---
+
+import { SaveComponentPlayground } from '../../components/SaveComponentPlayground';
+import { SaveComponentPreview } from '../../components/SaveComponentPreview';
+
+Save State provides focused components for inline status, badges, actions, progress, and details. Each preview is followed by a short explanation and a code example.
+
+## Save Indicator
+
+<div className="component-preview">
+  <SaveComponentPreview name="indicator" />
+</div>
+
+Use the compact indicator in an editor toolbar, beside a form field, or near the content being saved. The solid style uses a white icon and label for contrast.
+
+`variant` accepts `default`, `soft`, `ghost`, `outline`, `minimal`, or `solid`. `size` accepts `sm`, `md`, or `lg`. Set `showTimestamp={false}` to keep an inline status compact, or provide custom `labels`.
+
+```tsx
+<SaveIndicator
+  state={save.status}
+  lastSavedAt={save.lastSavedAt}
+  error={save.error}
+  variant="solid"
+  showTimestamp={false}
+/>
+```
+
+## Save Badge
+
+<div className="component-preview">
+  <SaveComponentPreview name="badge" />
+</div>
+
+Use a badge for compact status in a list row or summary. Solid badges use white check and error marks. Badge variants are `soft`, `outline`, and `solid`.
+
+```tsx
+<SaveBadge state={save.status} variant="solid" />
+```
+
+## Save Button
+
+<div className="component-preview">
+  <SaveComponentPreview name="button" />
+</div>
+
+Use a button when saving is an explicit action. It shows a busy state, blocks duplicate clicks while saving, and can render a retry action after an error.
+
+Button variants are `primary`, `secondary`, `outline`, and `ghost`; sizes are `sm`, `md`, and `lg`.
+
+```tsx
+<SaveButton
+  state={save.status}
+  onSave={save.save}
+  onRetry={save.retry}
+  retryable
+/>
+```
+
+## Save Progress
+
+<div className="component-preview">
+  <SaveComponentPreview name="progress" />
+</div>
+
+Use determinate progress when the persistence layer provides an accurate percentage. Pass `null` when the progress is unknown to show an indeterminate activity bar. Progress is clamped between 0 and 100.
+
+```tsx
+<SaveProgress
+  state="saving"
+  progress={uploadProgress}
+  label="Uploading document"
+/>
+```
+
+## Save Status
+
+<div className="component-preview component-preview--status">
+  <SaveComponentPreview name="status" />
+</div>
+
+Use the detailed status when an error needs context. It can also show a retry action and can optionally be wrapped in a native disclosure.
+
+```tsx
+<SaveStatus
+  state={save.status}
+  error={save.error}
+  lastSavedAt={save.lastSavedAt}
+  onRetry={save.retry}
+  expandable
+/>
+```
+
+## Interactive playground
+
+Select a component, switch its state and variant, adjust its values and colors, then try saving or retrying. The preview and code update together.
+
+<SaveComponentPlayground />

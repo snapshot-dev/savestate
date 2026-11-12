@@ -1,0 +1,45 @@
+{
+  "name": "savestate",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Premium save lifecycle management for React applications.",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "files": [
+    "dist",
+    "src/styles.css",
+    "README.md",
+    "AGENTS.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean --sourcemap --external react --external react-dom --out-dir dist && node -e \"require('fs').copyFileSync('src/styles.css', 'dist/styles.css')\"",
+    "test": "vitest run",
+    "lint": "tsc --noEmit --rootDir ."
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.1",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.1",
+    "jsdom": "^25.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^9.0.0"
+  }
+}

@@ -1,0 +1,82 @@
+---
+title: Getting started
+description: Install Save State and add a useful save lifecycle to your React interface.
+---
+
+Save State gives people clear feedback while their work is being saved. You provide the persistence function; Save State tracks the value and gives you consistent save-state components.
+
+## Install
+
+```bash
+pnpm add savestate
+```
+
+Save State supports React 18 and 19. Import the stylesheet once near your application root:
+
+```tsx
+import 'savestate/styles.css';
+```
+
+The stylesheet is optional. Every component accepts `className` and `style`, and you can override its CSS variables or provide a completely headless presentation.
+
+## Your first autosaving editor
+
+```tsx
+import { SaveIndicator, useSaveState } from 'savestate';
+import 'savestate/styles.css';
+
+function Editor({ initialContent }: { initialContent: string }) {
+  const save = useSaveState({
+    initialValue: initialContent,
+    debounce: 700,
+    onSave: async (content) => {
+      const response = await fetch('/api/document', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content }),
+      });
+
+      if (!response.ok) {
+        throw new Error('The document could not be saved.');
+      }
+    },
+  });
+
+  return (
+    <section>
+      <textarea
+        value={save.value}
+        onChange={(event) => save.setValue(event.target.value)}
+        aria-label="Document content"
+      />
+      <SaveIndicator
+        state={save.status}
+        lastSavedAt={save.lastSavedAt}
+        error={save.error}
+      />
+    </section>
+  );
+}
+```
+
+## Understand the confirmation boundary
+
+<Callout title="Saved means your callback succeeded" type="warn">
+  Save State only marks the latest value as remotely saved after `onSave` resolves. Local storage can help recover a draft, but it does not confirm the server persisted it.
+</Callout>
+
+If a newer edit arrives while an older save is in flight, the newer value remains dirty and will be saved separately. A failed callback leaves the value available for retry.
+
+## Continue
+
+<Cards>
+  <Card href="/docs/components" title="Components">
+    Browse live examples, save states, variants, and props for every component.
+  </Card>
+  <Card href="/docs/api" title="Hook and API">
+    Learn about options, events, retries, and optional local persistence.
+  </Card>
+  <Card href="/docs/examples" title="Patterns">
+    Build autosave, explicit-save, retry, and offline-aware flows.
+  </Card>
+</Cards>

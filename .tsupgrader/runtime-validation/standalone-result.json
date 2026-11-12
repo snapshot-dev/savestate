@@ -1,0 +1,97 @@
+{
+  "planHash": "3074284febc6bbba37d46f0a864a5aaa920fc4aef208f890aa2724d88805b86f",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-11-11T00:44:57.4007455Z",
+  "retryCount": 1,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "build-workspace",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E savestate-workspace@0.1.0 build C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\r\n\u003E pnpm --filter savestate build \u0026\u0026 pnpm --filter docs build\r\n\r\n\r\n\u003E savestate@0.1.0 build C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\\packages\\savestate\r\n\u003E tsup src/index.ts --format esm,cjs --dts --clean --sourcemap --external react --external react-dom --out-dir dist \u0026\u0026 node -e \u0022require(\u0027fs\u0027).copyFileSync(\u0027src/styles.css\u0027, \u0027dist/styles.css\u0027)\u0022\r\n\r\n\u001B[34mCLI\u001B[39m Building entry: src/index.ts\r\n\u001B[34mCLI\u001B[39m Using tsconfig: tsconfig.json\r\n\u001B[34mCLI\u001B[39m tsup v9.0.0\r\n\u001B[34mCLI\u001B[39m Target: es2022\r\n\u001B[34mCLI\u001B[39m Cleaning output folder\r\n\u001B[34mESM\u001B[39m Build start\r\n\u001B[34mCJS\u001B[39m Build start\r\n\u001B[32mCJS\u001B[39m \u001B[1mdist\\index.cjs     \u001B[22m\u001B[32m30.62 KB\u001B[39m\r\n\u001B[32mCJS\u001B[39m \u001B[1mdist\\index.cjs.map \u001B[22m\u001B[32m52.33 KB\u001B[39m\r\n\u001B[32mCJS\u001B[39m \u26A1\uFE0F Build success in 306ms\r\n\u001B[32mESM\u001B[39m \u001B[1mdist\\index.js     \u001B[22m\u001B[32m27.85 KB\u001B[39m\r\n\u001B[32mESM\u001B[39m \u001B[1mdist\\index.js.map \u001B[22m\u001B[32m52.24 KB\u001B[39m\r\n\u001B[32mESM\u001B[39m \u26A1\uFE0F Build success in 318ms\r\n\u001B[34mDTS\u001B[39m Build start\r\n\u001B[32mDTS\u001B[39m \u26A1\uFE0F Build success in 2243ms\r\n\u001B[32mDTS\u001B[39m \u001B[1mdist\\index.d.ts  \u001B[22m\u001B[32m8.54 KB\u001B[39m\r\n\u001B[32mDTS\u001B[39m \u001B[1mdist\\index.d.cts \u001B[22m\u001B[32m8.54 KB\u001B[39m\r\n\r\n\u003E docs@0.1.0 prebuild C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\\apps\\docs\r\n\u003E pnpm --filter savestate build\r\n\r\n\r\n\u003E savestate@0.1.0 build C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\\packages\\savestate\r\n\u003E tsup src/index.ts --format esm,cjs --dts --clean --sourcemap --external react --external react-dom --out-dir dist \u0026\u0026 node -e \u0022require(\u0027fs\u0027).copyFileSync(\u0027src/styles.css\u0027, \u0027dist/styles.css\u0027)\u0022\r\n\r\n\u001B[34mCLI\u001B[39m Building entry: src/index.ts\r\n\u001B[34mCLI\u001B[39m Using tsconfig: tsconfig.json\r\n\u001B[34mCLI\u001B[39m tsup v9.0.0\r\n\u001B[34mCLI\u001B[39m Target: es2022\r\n\u001B[34mCLI\u001B[39m Cleaning output folder\r\n\u001B[34mESM\u001B[39m Build start\r\n\u001B[34mCJS\u001B[39m Build start\r\n\u001B[32mCJS\u001B[39m \u001B[1mdist\\index.cjs     \u001B[22m\u001B[32m30.62 KB\u001B[39m\r\n\u001B[32mCJS\u001B[39m \u001B[1mdist\\index.cjs.map \u001B[22m\u001B[32m52.33 KB\u001B[39m\r\n\u001B[32mCJS\u001B[39m \u26A1\uFE0F Build success in 159ms\r\n\u001B[32mESM\u001B[39m \u001B[1mdist\\index.js     \u001B[22m\u001B[32m27.85 KB\u001B[39m\r\n\u001B[32mESM\u001B[39m \u001B[1mdist\\index.js.map \u001B[22m\u001B[32m52.24 KB\u001B[39m\r\n\u001B[32mESM\u001B[39m \u26A1\uFE0F Build success in 161ms\r\n\u001B[34mDTS\u001B[39m Build start\r\n\u001B[32mDTS\u001B[39m \u26A1\uFE0F Build success in 2278ms\r\n\u001B[32mDTS\u001B[39m \u001B[1mdist\\index.d.ts  \u001B[22m\u001B[32m8.54 KB\u001B[39m\r\n\u001B[32mDTS\u001B[39m \u001B[1mdist\\index.d.cts \u001B[22m\u001B[32m8.54 KB\u001B[39m\r\n\r\n\u003E docs@0.1.0 build C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\\apps\\docs\r\n\u003E next build\r\n\r\n\u25B2 Next.js 16.4.6 (Turbopack)\r\n\u2713 Running next.config.mjs took 639ms\r\n\r\n  Creating an optimized production build ...\r\n\u2713 Compiled successfully in 6.0s\r\n  Running TypeScript ...\r\n  Finished TypeScript in 4.6s ...\r\n  Collecting page data using 6 workers ...\r\n  Generating static pages using 6 workers (0/8) ...\r\n  Generating static pages using 6 workers (2/8) \r\n  Generating static pages using 6 workers (4/8) \r\n  Generating static pages using 6 workers (6/8) \r\n\u2713 Generating static pages using 6 workers (8/8) in 1968ms\r\n  Finalizing page optimization ...\r\n\r\nRoute (app)\r\n\u250C \u25CB /\r\n\u251C \u25CB /_not-found\r\n\u251C \u0192 /api/search\r\n\u2514   /docs/[[...slug]]\r\n  \u251C \u25CF /docs/api\r\n  \u251C \u25CF /docs/components\r\n  \u251C \u25CF /docs/examples\r\n  \u2514 \u25CF /docs\r\n\r\n\r\n\u25CB  (Static)   prerendered as static content\r\n\u25CF  (SSG)      prerendered as static HTML (uses generateStaticParams)\r\n\u0192  (Dynamic)  server-rendered on demand\r\n\r\n",
+        "durationMs": 29400
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E savestate-workspace@0.1.0 test C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\r\n\u003E pnpm --filter savestate test\r\n\r\n\r\n\u003E savestate@0.1.0 test C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\\packages\\savestate\r\n\u003E vitest run\r\n\r\n\r\n\u001B[1m\u001B[7m\u001B[36m RUN \u001B[39m\u001B[27m\u001B[22m \u001B[36mv2.1.9 \u001B[39m\u001B[90mC:/Users/ytlol/Documents/PROJECTS/API/SAVESTATE/packages/savestate\u001B[39m\r\n\r\n \u001B[32m\u2713\u001B[39m tests/useSaveState.test.tsx \u001B[2m(\u001B[22m\u001B[2m2 tests\u001B[22m\u001B[2m)\u001B[22m\u001B[90m 253\u001B[2mms\u001B[22m\u001B[39m\r\n\r\n\u001B[2m Test Files \u001B[22m \u001B[1m\u001B[32m1 passed\u001B[39m\u001B[22m\u001B[90m (1)\u001B[39m\r\n\u001B[2m      Tests \u001B[22m \u001B[1m\u001B[32m2 passed\u001B[39m\u001B[22m\u001B[90m (2)\u001B[39m\r\n\u001B[2m   Start at \u001B[22m 01:44:51\r\n\u001B[2m   Duration \u001B[22m 3.68s\u001B[2m (transform 103ms, setup 0ms, collect 688ms, tests 253ms, environment 2.03s, prepare 256ms)\u001B[22m\r\n\r\n",
+        "durationMs": 6868,
+        "testResults": {
+          "testFramework": "vitest",
+          "runnerDetectedFrom": "package_json",
+          "testsTotal": 2,
+          "testsPassed": 2,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": false
+        }
+      },
+      {
+        "name": "library-typecheck",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E savestate@0.1.0 lint C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE\\packages\\savestate\r\n\u003E tsc --noEmit --rootDir .\r\n\r\n",
+        "durationMs": 2202
+      }
+    ],
+    "executions": [
+      {
+        "source": "build-workspace",
+        "resolvedExecutable": "C:\\Users\\ytlol\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "args": [
+          "build"
+        ],
+        "cwd": "C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Users\\ytlol\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "library-typecheck",
+        "resolvedExecutable": "C:\\Users\\ytlol\\AppData\\Local\\pnpm\\bin\\pnpm.CMD",
+        "args": [
+          "--filter",
+          "savestate",
+          "lint"
+        ],
+        "cwd": "C:\\Users\\ytlol\\Documents\\PROJECTS\\API\\SAVESTATE",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}

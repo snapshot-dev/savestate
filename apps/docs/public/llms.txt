@@ -1,0 +1,55 @@
+# Save State documentation
+
+Save State is a React and TypeScript component kit for showing the lifecycle of user changes as they are persisted. It is focused on save-state UI, not general-purpose notifications.
+
+## Documentation
+
+- `/docs` — Installation and first save
+- `/docs/components` — SaveIndicator, SaveBadge, SaveButton, SaveProgress, and SaveStatus
+- `/docs/api` — `useSaveState` options, return values, events, and local persistence
+- `/docs/examples` — Autosave, explicit save, retry, and offline-aware patterns
+
+## Quick start
+
+```tsx
+import { SaveIndicator, useSaveState } from 'savestate';
+import 'savestate/styles.css';
+
+function Editor() {
+  const save = useSaveState({
+    initialValue: '',
+    debounce: 600,
+    onSave: async (value) => {
+      const response = await fetch('/api/document', {
+        method: 'PUT',
+        body: JSON.stringify({ value }),
+      });
+      if (!response.ok) throw new Error('Save failed');
+    },
+  });
+
+  return (
+    <>
+      <textarea
+        value={save.value}
+        onChange={(event) => save.setValue(event.target.value)}
+      />
+      <SaveIndicator state={save.status} lastSavedAt={save.lastSavedAt} />
+    </>
+  );
+}
+```
+
+## Components
+
+- `SaveIndicator` — compact inline state with six visual variants
+- `SaveBadge` — status badge with soft, outline, and solid styles
+- `SaveButton` — save/retry action with primary, secondary, outline, and ghost styles
+- `SaveProgress` — determinate or indeterminate progress
+- `SaveStatus` — detailed state, error, timestamp, and retry surface
+
+## Lifecycle states
+
+`idle`, `dirty`, `saving`, `saved`, `error`, `offline`, `syncing`, `conflict`.
+
+The `saved` state only follows successful completion of the application-provided `onSave` callback. Local storage is optional and is not proof of remote persistence.

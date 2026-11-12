@@ -1,0 +1,98 @@
+{
+  "name": "savestate",
+  "description": "Premium save lifecycle manager for React applications.",
+  "statusValues": [
+    "idle",
+    "dirty",
+    "saving",
+    "saved",
+    "error",
+    "offline",
+    "syncing",
+    "conflict"
+  ],
+  "hooks": [
+    {
+      "name": "useSaveState",
+      "exports": [
+        "value",
+        "setValue",
+        "status",
+        "isDirty",
+        "isSaving",
+        "isSaved",
+        "error",
+        "lastSavedAt",
+        "save",
+        "retry",
+        "reset",
+        "cancel",
+        "flush"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "SaveIndicator",
+      "props": [
+        "state",
+        "lastSavedAt",
+        "error",
+        "labels",
+        "size",
+        "variant",
+        "showIcon",
+        "showTimestamp",
+        "className",
+        "style"
+      ]
+    },
+    {
+      "name": "SaveButton",
+      "props": [
+        "state",
+        "onSave",
+        "onRetry",
+        "disabled",
+        "retryable",
+        "labels",
+        "className",
+        "style"
+      ]
+    },
+    {
+      "name": "SaveStatus",
+      "props": [
+        "state",
+        "lastSavedAt",
+        "error",
+        "onRetry",
+        "retryLabel",
+        "expandable",
+        "className",
+        "style"
+      ]
+    },
+    {
+      "name": "SaveBadge",
+      "props": [
+        "state",
+        "labels",
+        "size",
+        "variant",
+        "className",
+        "style"
+      ]
+    },
+    {
+      "name": "SaveProgress",
+      "props": [
+        "state",
+        "progress",
+        "label",
+        "className",
+        "style"
+      ]
+    }
+  ]
+}

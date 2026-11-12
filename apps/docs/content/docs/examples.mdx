@@ -1,0 +1,122 @@
+---
+title: Patterns
+description: Practical Save State patterns for autosave, explicit save, recovery, offline status, and styling.
+---
+
+Start from the interaction your product needs. Use the same hook and choose only the UI surface that helps at that point.
+
+## Debounced autosave
+
+Autosave works well for editors where users expect edits to persist as they work.
+
+```tsx
+function NotesEditor({ documentId, initialText }: Props) {
+  const save = useSaveState({
+    initialValue: initialText,
+    debounce: 800,
+    onSave: async (content) => {
+      const response = await fetch(`/api/documents/${documentId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content }),
+      });
+
+      if (!response.ok) throw new Error('Save failed');
+    },
+  });
+
+  return (
+    <>
+      <textarea
+        value={save.value}
+        onChange={(event) => save.setValue(event.target.value)}
+      />
+      <SaveIndicator
+        state={save.status}
+        lastSavedAt={save.lastSavedAt}
+        error={save.error}
+      />
+    </>
+  );
+}
+```
+
+## Explicit save
+
+For settings or forms, disable autosave and let the user choose when to submit.
+
+```tsx
+const save = useSaveState({
+  initialValue: defaults,
+  autoSave: false,
+  onSave: submitSettings,
+});
+
+return (
+  <>
+    <SettingsForm value={save.value} onChange={save.setValue} />
+    <SaveButton
+      state={save.status}
+      onSave={save.save}
+      disabled={!save.isDirty}
+    />
+  </>
+);
+```
+
+## Show an error and retry
+
+Reject or throw from `onSave` when persistence fails. The current value stays available, the hook exposes the error, and the status component can offer a retry.
+
+```tsx
+<SaveStatus
+  state={save.status}
+  error={save.error}
+  onRetry={save.retry}
+  retryLabel="Try again"
+/>
+```
+
+## Offline-aware status
+
+The browser's `navigator.onLine` signal is a useful default, but an app can provide a more relevant connectivity check.
+
+```tsx
+const save = useSaveState({
+  initialValue: draft,
+  offlineCheck: async () => await pingYourApi(),
+  onSave: saveDraftToServer,
+});
+
+return <SaveBadge state={save.status} variant="soft" />;
+```
+
+An `offline` state is not a successful save. If you also enable local persistence, document that it is only a local recovery mechanism, not server confirmation.
+
+## Match the component to the moment
+
+```tsx
+// Quiet inline feedback
+<SaveIndicator state={save.status} showTimestamp={false} />
+
+// Compact state in a document list
+<SaveBadge state={save.status} variant="outline" />
+
+// Long-running upload with a real percentage
+<SaveProgress state={save.status} progress={uploadPercent} label="Uploading" />
+```
+
+## Respect reduced motion and theming
+
+The default stylesheet uses CSS variables and disables animation for users who request reduced motion. Override tokens on a parent element to theme a section:
+
+```css
+.editor-shell {
+  --ss-success: #18794e;
+  --ss-warning: #9a5700;
+  --ss-danger: #b42318;
+  --ss-border: color-mix(in srgb, currentColor 18%, transparent);
+}
+```
+
+See [Components](/docs/components) for live states and all variants, or [Hook and API](/docs/api) for the complete option reference.

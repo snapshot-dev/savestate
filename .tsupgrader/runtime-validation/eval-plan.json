@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-11-10T23:55:00Z",
+  "generatedOnPlatform": "win32",
+  "projectType": "framework",
+  "setup": [],
+  "assertions": [
+    {
+      "name": "build-workspace",
+      "kind": "process",
+      "command": "pnpm",
+      "args": ["build"],
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 600
+    },
+    {
+      "name": "tests-pass",
+      "kind": "process",
+      "command": "pnpm",
+      "args": ["test"],
+      "verificationMethod": "test-results",
+      "expected": "0",
+      "timeoutSeconds": 300
+    },
+    {
+      "name": "library-typecheck",
+      "kind": "process",
+      "command": "pnpm",
+      "args": ["--filter", "savestate", "lint"],
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 180
+    }
+  ]
+}

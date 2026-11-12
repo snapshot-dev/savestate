@@ -1,0 +1,102 @@
+---
+title: Hook and API
+description: Reference for useSaveState, save lifecycle states, events, and storage options.
+---
+
+`useSaveState<T>` owns a value and reports its persistence lifecycle. It does not choose your server, API client, conflict policy, or data format.
+
+## Options
+
+```tsx
+const save = useSaveState({
+  initialValue: '',
+  debounce: 700,
+  autoSave: true,
+  enabled: true,
+  onSave: async (value) => persistDocument(value),
+  onError: (error) => reportSaveFailure(error),
+  onSaved: (value, timestamp) => recordSuccessfulSave(value, timestamp),
+  compare: (previous, next) => previous.trim() === next.trim(),
+  offlineCheck: () => navigator.onLine,
+});
+```
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `initialValue` | `T` | required | Initial value and reset target. |
+| `onSave` | `(value: T) => void \| Promise<void>` | required | Persist the provided value. Reject the promise to report a failure. |
+| `debounce` | `number` | `350` | Milliseconds to wait after a change before autosaving. |
+| `autoSave` | `boolean` | `true` | Set to `false` to save only when requested. |
+| `enabled` | `boolean` | `true` | Set to `false` to prevent persistence. |
+| `compare` | `(previous: T, next: T) => boolean` | strict equality | Return `true` when the values should be treated as equal. |
+| `onError` | `(error: unknown) => void` | — | Called when `onSave` rejects or throws. |
+| `onSaved` | `(value: T, timestamp: number) => void` | — | Called when the latest value is confirmed saved. |
+| `onDirty` | `(value: T) => void` | — | Called when a value changes through `setValue`. |
+| `offlineCheck` | `() => boolean \| Promise<boolean>` | `navigator.onLine` | Optional application-specific connectivity check. |
+| `local` | `LocalPersistenceConfig<T>` | — | Optional storage adapter and serialization configuration. |
+
+## Return value
+
+| Member | Description |
+| --- | --- |
+| `value` | Current local value. |
+| `setValue(value)` | Update the value and schedule autosave when enabled. |
+| `status` | Current save state. |
+| `isDirty` | Current value differs from the last confirmed value. |
+| `isSaving` | A save request is in progress. |
+| `isSaved` | Current value matches the last confirmed value. |
+| `error` | Most recent save error, or `null`. |
+| `lastSavedAt` | Timestamp for the most recent confirmed save, or `null`. |
+| `lastSavedValue` | Last value confirmed by `onSave`. |
+| `save()` / `flush()` | Attempt to save the current value immediately. |
+| `retry()` | Retry the current value. |
+| `cancel()` | Cancel a pending debounce timer; it cannot cancel a request already sent. |
+| `reset()` | Restore the initial value and clear the configured local key. |
+| `on(event, handler)` | Subscribe to lifecycle events and receive an unsubscribe function. |
+
+## States
+
+| State | Meaning |
+| --- | --- |
+| `idle` | Initial or reset value; no edit is pending. |
+| `dirty` | Local value has changes not yet confirmed by `onSave`. |
+| `saving` | The persistence callback is running. |
+| `saved` | The current value was confirmed by a successful callback. |
+| `error` | Persistence failed; the local value remains available to retry. |
+| `offline` | Connectivity check reports offline; remote persistence is not confirmed. |
+| `syncing` | Reserved for synchronization integrations. |
+| `conflict` | Reserved for application-managed conflict resolution. |
+
+An older request completing does not mark a newer edit as saved. The hook keeps the new value dirty and schedules another autosave when automatic saving is enabled.
+
+## Events
+
+```tsx
+const stopListening = save.on('saved', (snapshot) => {
+  console.log('Confirmed value:', snapshot.lastSavedValue);
+});
+
+save.on('failed', (snapshot, error) => {
+  console.error('Save failed:', error);
+});
+
+// For example, from a React effect cleanup:
+stopListening();
+```
+
+The event names are typed: `idle`, `dirty`, `saving`, `saved`, `failed`, `offline`, `syncing`, `conflict`, and `reset`. They describe the lifecycle; they do not perform persistence themselves.
+
+## Optional local storage
+
+```tsx
+const save = useSaveState({
+  initialValue: document,
+  onSave: persistDocument,
+  local: {
+    enabled: true,
+    key: 'draft:document-42',
+  },
+});
+```
+
+You can provide a `StorageAdapter<T>` with `getItem`, `setItem`, and `removeItem`, or customize `serialize`, `deserialize`, `onRead`, and `onWrite`. Browser storage is unencrypted and may be unavailable or quota-limited. Never store secrets or sensitive data in it.

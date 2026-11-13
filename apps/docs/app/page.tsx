@@ -72,35 +72,6 @@ const components = [
 export default function HomePage() {
   return (
     <main>
-      <Box
-        px={{ initial: "4", md: "7" }}
-        py="4"
-        style={{ borderBottom: "1px solid var(--gray-a5)" }}
-      >
-        <Container size="4">
-          <Flex align="center" justify="between" gap="3" wrap="wrap">
-            <Link href="/" aria-label="Save State home" className="home-brand">
-              <Bookmark size={30} strokeWidth={2} aria-hidden="true" />
-              <Text as="span" size="6" weight="bold">
-                Save State
-              </Text>
-            </Link>
-            <Flex
-              align="center"
-              gap="2"
-              wrap="wrap"
-              className="home-header__links"
-            >
-              <Button asChild size="3" variant="solid">
-                <Link href="/docs">
-                  Read the docs <ArrowRight size={17} />
-                </Link>
-              </Button>
-            </Flex>
-          </Flex>
-        </Container>
-      </Box>
-
       <Container size="4" px={{ initial: "4", md: "6" }}>
         <Section size="3" className="home-hero">
           <Grid
